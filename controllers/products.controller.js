@@ -13,10 +13,21 @@ exports.create = (req, res, next) => {
         req.file != undefined ? req.file.path.replace(/\\/g, "/") : "";
 
       var model = {
-        productName: req.body.productName,
-        productDescription: req.body.productDescription,
-        productPrice: req.body.productPrice,
-        productImage: path != "" ? url + "/" + path : "",
+        name: req.body.name,
+        stockprice: req.body.stockprice,
+        realtimesp: req.body.realtimesp,
+        industry: req.body.industry,
+        size: req.body.size,
+        impact: req.body.impact,
+        products: req.body.products,
+        revenue: req.body.revenue,
+        icon: req.body.icon,
+        NonRenewableEnergy: req.body.NonRenewableEnergy,
+        RenewableEnergy: req.body.RenewableEnergy,
+        WaterPollution: req.body.WaterPollution,
+        AirPollution: req.body.AirPollution,
+        LandPollution: req.body.LandPollution,
+        Recycling: req.body.Recycling
       };
 
       productsServices.createProduct(model, (error, results) => {
@@ -78,11 +89,21 @@ exports.update = (req, res, next) => {
         req.file != undefined ? req.file.path.replace(/\\/g, "/") : "";
 
       var model = {
-        productId: req.params.id,
-        productName: req.body.productName,
-        productDescription: req.body.productDescription,
-        productPrice: req.body.productPrice,
-        productImage: path != "" ? url + "/" + path : "",
+        name: req.body.name,
+        stockprice: req.body.stockprice,
+        realtimesp: req.body.realtimesp,
+        industry: req.body.industry,
+        size: req.body.size,
+        impact: req.body.impact,
+        products: req.body.products,
+        revenue: req.body.revenue,
+        icon: req.body.icon,
+        NonRenewableEnergy: req.body.NonRenewableEnergy,
+        RenewableEnergy: req.body.RenewableEnergy,
+        WaterPollution: req.body.WaterPollution,
+        AirPollution: req.body.AirPollution,
+        LandPollution: req.body.LandPollution,
+        Recycling: req.body.Recycling
       };
 
       console.log(model);

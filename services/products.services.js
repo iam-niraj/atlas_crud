@@ -1,14 +1,7 @@
 const { product } = require("../models/products.model");
+const fs = require('fs');
 
 async function createProduct(params, callback) {
-  if (!params.productName) {
-    return callback(
-      {
-        message: "Product Name Required",
-      },
-      ""
-    );
-  }
 
   const productModel = new product(params);
   productModel
@@ -69,7 +62,15 @@ async function deleteProduct(params, callback) {
   const productId = params.productId;
 
   product
-    .findByIdAndRemove(productId)
+    .findByIdAndRemove(productId, (err, res) => {
+      var imageResponse = res.productImage;
+      var imgurl = imageResponse.replace('http://localhost:5000', '');
+      console.log(imageResponse);
+      fs.unlink("D:/Deployment/project annam/api" + imgurl, (err) => {
+        if (err) throw err;
+        console.log('successfully deleted file');
+      });
+    })
     .then((response) => {
       if (!response) callback(`Cannot delete Product with id=${productId}. Maybe Product was not found!`);
       else callback(null, response);
